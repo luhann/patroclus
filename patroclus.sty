@@ -1,0 +1,224 @@
+% patroclus package
+% ==================
+% A LaTeX package for the personal use of Luke Hannan
+%
+% "Achilles Come Down"
+%
+% Luke Hannan
+%
+% Distributed under the terms of the MIT License
+% https://opensource.org/licenses/MIT
+\ProvidesPackage{patroclus}[2025/01/05 Personal LaTeX package]
+\NeedsTeXFormat{LaTeX2e}
+
+\newcommand\@shorttitle{}
+% define \theshorttitle to what is given
+\newcommand\shorttitle[1]{\renewcommand\@shorttitle{#1}}
+
+% Memoir Specific Options
+\DeclareOption{memoir}{
+  \@ifclassloaded{memoir}
+  {%
+    \sideparmargin{outer}
+     % Memoir specific allows for automatic creation of subfigures
+    \newsubfloat{figure}
+
+    % Page Layout     
+    \setlrmarginsandblock{1.33in}{1.33in}{*}
+    \setulmarginsandblock{1.33in}{*}{*}
+    \checkandfixthelayout{}
+
+    % Define chapter appearances
+    \makechapterstyle{patroclus}{%
+      \renewcommand*{\chapterheadstart}{}
+      \renewcommand*{\chaptitlefont}{\LARGE\bfseries\sffamily\scshape\raggedleft}
+      % In this chapterstyle because chapter name is declared empty later, no
+      % 'Chapter' is printed
+      \renewcommand*{\chapnamefont}{\LARGE\bfseries\sffamily\scshape\raggedleft}
+      \renewcommand*{\chapnumfont}{\LARGE\bfseries\sffamily\scshape\raggedleft}
+      \setlength{\chapindent}{\marginparsep}\addtolength{\chapindent}{\marginparwidth}
+      \setlength{\afterchapskip}{20pt}
+      \renewcommand*{\printchaptername}{}%
+      \renewcommand*{\printchapternum}{\color{alizarin}\chapnumfont\thechapter}%
+      \renewcommand*{\afterchapternum}{\quad}
+      \renewcommand*{\printchaptertitle}[1]{\color{alizarin}\chaptitlefont{##1}}
+    }
+
+    % This separates the Chapter title from the page number in the TOC
+    % Here it is set to only use blank space as opposed to dots
+    \renewcommand*{\cftchapterleader}{\hfill}
+
+    \setsecheadstyle{\Large\bfseries\color{pastel_red}}% Set \section style
+
+    % Code for only changing the chapter title and number, not name
+    % \renewcommand{\chapnamefont}{\large\scshape\raggedleft\color{alizarin}}
+    % \renewcommand{\chapnumfont}{\LARGE\bfseries\color{alizarin}}
+    % \renewcommand{\chaptitlefont}{\normalfont\LARGE\bfseries\sffamily\raggedleft\color{black}}
+    
+    % set chapterstyle to custom defined chapter headers
+    \chapterstyle{patroclus}
+
+    % Define a pagestyle for header and footer behaviour
+    \makepagestyle{patroclus}
+    \makefootrule{patroclus}{\textwidth}{\normalrulethickness}{\footruleskip}
+    \makeevenfoot{patroclus}{\small Hannan: \@shorttitle}{}{\small\thepage~of~\thelastpage}{}
+    \makeoddfoot{patroclus}{\small Hannan: \@shorttitle}{}{\small\thepage~of~\thelastpage}{}
+    % \pagestyle{patroclus}
+    % \copypagestyle{chapter}{patroclus}
+
+    % Table of Contents Stuff
+    % Set depth to include in toc and to number
+    \settocdepth{subsection}
+    \setsecnumdepth{subsection}
+
+    % Make all captions bold
+    % captionnamefont makes the "figure x" part bold
+    % captiontitlefont makes the caption text part bold
+    \captionnamefont{\bfseries}
+    \captiontitlefont{\bfseries}
+  }{%
+    \PackageWarning{patroclus}{no-memoir}
+  }
+}
+
+\DeclareOption*{% default
+  \PackageWarning{patroclus}{Unknown option `\CurrentOption' !}%
+}
+
+\ProcessOptions\relax
+% The command \ProcessOptions\relax executes the code fore each option and must
+% be inserted after all the option-handling commands were typed.
+
+% Define packages used for personal style file
+% Images
+\RequirePackage{graphicx}
+\graphicspath{ {./figures/} }
+
+% Make figure numbers start from 1, rather than the section number
+% \renewcommand{\thefigure}{\arabic{figure}}
+% \setcounter{figure}{0}
+
+% Fonts
+\RequirePackage{fontspec}
+\RequirePackage[british]{babel}
+
+% Math packages and equation formatting
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{bm}
+\RequirePackage{mathrsfs}
+
+
+
+% Autostyle means I can use normal "" to produce the correct curly quotes “”
+\RequirePackage[autostyle,english=british]{csquotes}
+
+% the minted package can be used to properly style code blocks if they need to
+% be included in code blocks
+
+% Required for declating custom colours in documents
+\RequirePackage{xcolor}
+
+% Bibliography
+\RequirePackage[
+    backend=biber,
+    style=authoryear,
+    uniquename=false,
+    maxbibnames=99,
+    maxcitenames=2,
+    giveninits=true,
+    sortcites=true,
+    sorting=ynt,
+    natbib=true,
+    url=false,
+    doi=true,
+    eprint=false,
+    isbn=false,
+    hyperref=true,
+    refsection=chapter
+]{biblatex}
+
+% makes it so that the last name of the author is always printed first when the
+% bibliography is printed
+\DeclareNameAlias{author}{family-given}
+% Hyperref for hyperlinked table of contents
+\RequirePackage[
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=alizarin
+]{hyperref}
+
+% Needed to make figures hyperlink to top of environment correctly
+\RequirePackage[all]{hypcap}
+
+% This bit makes the whole text citation a hyperlink
+% The default without this code is for only the year to be a hyperlink
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}}
+
+% Define some custom colors 
+\definecolor{alizarin}{HTML}{A51C30}
+\definecolor{pastel_red}{HTML}{FF746C}
+
+\linespread{1.33}
+\setlength\parindent{24pt}
+
+% Change these fonts
+\setmainfont{EB Garamond}
+\setsansfont{Lato}
+\setmonofont{Iosevka Nerd Font}
+
+% For setting fonts locally with xelatex only
+% i.e if you want to change chapter font
+% \newfontfamily\myfont{Linux Libertine O}
+% Can also put the new font in an environment
+% \newenvironment{myfont}{\myfont}{\par} if plan to use often
+
+% This environment sets paragraph level indent levels to 0pt for an entire
+% environment
+\newenvironment{noindents}{
+  \setlength{\parindent}{0pt}
+}
+
+\RequirePackage{enumitem}
+
+% This tells tex that widow/orphan lines are infinitely bad
+\widowpenalty 10000
+\clubpenalty 10000
+
+\endinput
+%% End of file `patroclus.sty'.
