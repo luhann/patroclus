@@ -1,0 +1,176 @@
+/*-- scss:defaults --*/
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+$presentation-heading-font: "Josefin Sans", sans-serif;
+$font-family-sans-serif: "Cormorant Garamond", serif;
+$font-family-monospace: "Source Code Pro", monospace;
+$code-block-font-size: 40%;
+
+/* Colours */
+$colors: (
+  "parchment": #EADBCB,
+  "parchment-light": #F2E9DE,
+  "alizarin": #B22222,
+  "gray": #404040,
+);
+
+$body-bg: map-get($colors, "parchment");
+$code-block-bg: map-get($colors, "parchment-light");
+$code-block-border-color: #00000000;
+
+/*-- scss:rules --*/
+.reveal ::selection {
+  background: transparentize(map-get($colors, "alizarin"), 0.3);
+  color: white;
+  text-shadow: none;
+}
+
+/* Slide normal text */
+.reveal body,
+.reveal section p,
+.reveal section ul,
+.reveal section ol {
+  font-weight: 500;
+  font-size: 90%;
+  color: map-get($colors, "gray");
+}
+
+/* Slide heading text */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: map-get($colors, "alizarin");
+  margin-bottom: 5%;
+}
+
+li::marker {
+  color: map-get($colors, "alizarin");
+}
+
+img {
+  border-radius: 20px; 
+  corner-shape: squircle;
+  mix-blend-mode: darken;
+}
+
+/* Bold figure captions */
+.quarto-float-caption{
+  font-weight: bold;
+}
+
+.reveal .progress {
+  color: map-get($colors, "alizarin");
+  height: 0.75%;
+}
+
+/* Code formatting */
+.remark-code,
+.remark-inline-code {
+}
+
+.sourceCode {
+  border-radius: 15px; 
+  corner-shape: squircle;
+}
+
+/* Footer formatting */
+.reveal .footer {
+  text-align: justify;
+  color: map-get($colors, "alizarin");
+  position: absolute;
+  bottom: 0 !important;
+  width: 100%;
+  height: 4%;
+}
+
+.reveal .footer p {
+  padding-top: 0.5%;
+  font-weight: bold;
+}
+
+.slide-number-a, .slide-number-b, .slide-number-delimiter {
+  color: map-get($colors, "alizarin");
+}
+
+a:link {
+  color: map-get($colors, "alizarin");
+}
+
+a:visited {
+  color: #791616;
+}
+
+a:hover, a:active {
+  color: #f16b2d !important;
+}
+
+.tiny {
+  font-size: 40%;
+}
+
+.small {
+  font-size: 85%;
+}
+
+.large {
+  font-size: 120%;
+}
+
+.text-highlight {
+  color: map-get($colors, "alizarin");
+}
+
+.text-gray {
+  color: #808080;
+}
+
+/* Add blur for blurred fragments */
+.reveal .slides section .fragment.blur {
+  filter: blur(5px);
+}
+
+.reveal .slides section .fragment.blur.visible {
+  filter: none
+}
+
+.add-space {
+  padding-right: 10%;
+}
+
+.v-space-large {
+  margin-top: 5% !important;
+}
+
+.v-space {
+  margin-top: 2% !important;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-middle {
+  vertical-align: middle;
+  text-align: center;
+  top: 30%;
+}
+
+.center-y {
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 0%;
+  -ms-transform: translateY(-50%), translateX(-50%);
+  transform: translateY(-50%), translateX(-50%);
+}
+
+.shadow {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}

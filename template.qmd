@@ -1,0 +1,29 @@
+---
+title: Insert Title Here
+author:
+  - name: Luke Hannan
+    degrees:
+      - MPH
+      - PhD
+    orcid: 0000-0002-8217-843X
+    email: luke.hannan@uct.ac.za
+    affiliations:
+      - id: uct
+      - name: University of Cape Town
+      - department: Division of Epidemiology and Biostatistics
+      - city: Cape Town
+      - country: South Africa
+      - url: https://health.uct.ac.za/school-public-health/divisions/epidemiology-and-biostatistics
+date: today
+date-format: iso
+format:
+  html:
+    smooth-scroll: true
+    toc: true
+    toc-title: Contents
+    code-fold: true
+    respect-user-color-scheme: true
+    theme:
+      light: journal
+      dark: journal
+---
