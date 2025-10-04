@@ -8,7 +8,7 @@
 %
 % Distributed under the terms of the MIT License
 % https://opensource.org/licenses/MIT
-\ProvidesPackage{patroclus}[2025/01/05 Personal LaTeX package]
+\ProvidesPackage{patroclus}[2025/10/05 Personal LaTeX package]
 \NeedsTeXFormat{LaTeX2e}
 
 \newcommand\@shorttitle{}
@@ -54,7 +54,7 @@
     % \renewcommand{\chapnamefont}{\large\scshape\raggedleft\color{alizarin}}
     % \renewcommand{\chapnumfont}{\LARGE\bfseries\color{alizarin}}
     % \renewcommand{\chaptitlefont}{\normalfont\LARGE\bfseries\sffamily\raggedleft\color{black}}
-    
+
     % set chapterstyle to custom defined chapter headers
     \chapterstyle{patroclus}
 
@@ -148,7 +148,8 @@
   citecolor=black,
   filecolor=black,
   linkcolor=black,
-  urlcolor=alizarin
+  urlcolor=alizarin,
+  pdfversion=2.0
 ]{hyperref}
 
 % Needed to make figures hyperlink to top of environment correctly
@@ -199,8 +200,8 @@
 
 % Change these fonts
 \setmainfont{EB Garamond}
-\setsansfont{Lato}
-\setmonofont{Iosevka Nerd Font}
+\setsansfont{Cinzel}
+\setmonofont{Monaspace Neon Var}
 
 % For setting fonts locally with xelatex only
 % i.e if you want to change chapter font
@@ -215,10 +216,6 @@
 }
 
 \RequirePackage{enumitem}
-
-% This tells tex that widow/orphan lines are infinitely bad
-\widowpenalty 10000
-\clubpenalty 10000
 
 \endinput
 %% End of file `patroclus.sty'.
