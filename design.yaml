@@ -1,0 +1,27 @@
+# Patroclus Design Tokens
+colors:
+  alizarin: "#A51C30"
+  pastel_red: "#FF746C"
+  parchment: "#EADBCB"
+  black: "#000000"
+  white: "#FFFFFF"
+
+fonts:
+  serif:
+    family: "EB Garamond"
+    usage: "body text"
+  heading:
+    family: "Cinzel"
+    usage: "headings"
+  sans:
+    family: "Josefin Sans"
+    usage: "presentations"
+  mono:
+    family: "Source Code Pro"
+    fallback: "Monaspace Neon Var"
+    usage: "code blocks"
+
+typography:
+  base_size: 12pt
+  heading_scale: 1.5
+  line_height: 1.5

@@ -2,21 +2,40 @@
 
 > Achilles Come Down
 
-A collection of themes and templates based on my personal style.
+Personal document themes for LaTeX, Quarto, and Typst with consistent typography.
 
-## Latex
+## Usage
 
-`patroclus.sty` is my personal latex package, with a number of useful preset commands
-and typography settings.
+**LaTeX**
+```latex
+% If using memoir class
+\documentclass{memoir}
+\usepackage[memoir]{patroclus}
+% If using default class
+\usepackage{patroclus}
+```
 
-## Quarto
+**Quarto Document**
+```yaml
+format:
+  pdf:
+    include-in-header:
+      - patroclus.sty
+```
 
-`template.qmd` is my standard quarto template for analyses and reports.
+**Quarto Slides**
+```yaml
+format:
+  revealjs:
+    theme: [default, patroclus.scss]
+```
 
-`patroclus.scss` is my personal `SCSS` theme file, while not specific to quarto it is often
-used in my quarto slides and reports.
+**Typst**
+```typst
+#import "patroclus.typ": patroclus
+#show: patroclus.with(title: "Title", authors: (...))
+```
 
-## Typst
+## Design Tokens
 
-`patroclus.typ` is my personal typst template, that is designed to perfectly mimic my latex
-style file.
+Colours and fonts defined in `patroclus.yaml`.
