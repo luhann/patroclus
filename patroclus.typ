@@ -41,6 +41,7 @@
   )
 
   set par(
+    justify: true,
     leading: 1em, // This provides line spacing similar to \linespread{1.33}
     first-line-indent: 24pt,
   )
